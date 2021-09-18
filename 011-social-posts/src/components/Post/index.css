@@ -1,0 +1,35 @@
+.post {
+  padding: 20px;
+  margin: 20px;
+
+  background-color: #fafafa;
+
+  border-radius: 10px;
+
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+}
+
+.title {
+  display: flex;
+
+  align-items: center;
+}
+
+.title > p {
+  font-size: 1.3rem;
+  margin: 0px;
+
+  margin-left: 10px;
+}
+
+svg {
+  width: 25px;
+  height: 25px;
+}
