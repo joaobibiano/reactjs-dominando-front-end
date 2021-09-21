@@ -1,0 +1,19 @@
+{
+  "fuel": [
+    {
+      "id": 1,
+      "name": "Gasolina Comum",
+      "price": 8.44
+    },
+    {
+      "id": 2,
+      "name": "Etanol",
+      "price": 3.42
+    },
+    {
+      "id": 3,
+      "name": "Diesel",
+      "price": 4.19
+    }
+  ]
+}
