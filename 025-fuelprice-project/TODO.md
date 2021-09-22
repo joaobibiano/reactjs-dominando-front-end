@@ -8,7 +8,7 @@
 [x] - Alterar Ícone
 [x] - Configurar tema e styled-components
 [] - Criar Fuel Component
-[] - Add Icons Package
+[x] - Add Icons Package
 [] - Configurar Axios
 [] - Conectar na componente na API
 [] - Criar etapa de alteração de preços
