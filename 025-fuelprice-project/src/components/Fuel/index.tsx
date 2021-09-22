@@ -1,10 +1,10 @@
 import React from "react";
-import { Title } from "./styles";
+import { Container, Title } from "./styles";
 
 export const FuelComponent = () => {
   return (
-    <div>
+    <Container>
       <Title>Posto ReactJS</Title>
-    </div>
+    </Container>
   );
 };
