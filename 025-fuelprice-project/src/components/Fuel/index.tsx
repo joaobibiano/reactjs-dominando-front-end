@@ -3,6 +3,7 @@ import { getFuel } from "./services";
 import {
   Box,
   Container,
+  FuelInput,
   FuelPrice,
   FuelText,
   InfoText,
@@ -22,6 +23,8 @@ export const FuelComponent = ({
 }: FuelComponentProps) => {
   const [fuels, setFuels] = useState<IFuel[]>();
 
+  console.log(fuels);
+
   async function fetchAndUpdateData() {
     const data = await getFuel();
 
@@ -31,6 +34,18 @@ export const FuelComponent = ({
   useEffect(() => {
     fetchAndUpdateData();
   }, []);
+
+  function onUpdatePrice(fuelId: number, price: string) {
+    const updatedFuels = fuels?.map((fuel) => {
+      if (fuel.id === fuelId) {
+        fuel.price = Number(price);
+      }
+
+      return fuel;
+    });
+
+    setFuels(updatedFuels);
+  }
 
   return (
     <Container>
@@ -53,7 +68,15 @@ export const FuelComponent = ({
               <FuelText>{fuel.name}</FuelText>
             </Box>
             <Box>
-              <FuelPrice>{fuel.price}</FuelPrice>
+              {editMode ? (
+                <FuelInput
+                  type="number"
+                  value={fuel.price}
+                  onChange={(ev) => onUpdatePrice(fuel.id, ev.target.value)}
+                />
+              ) : (
+                <FuelPrice>{fuel.price}</FuelPrice>
+              )}
             </Box>
           </Row>
         ))}

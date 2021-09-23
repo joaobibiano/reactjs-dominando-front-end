@@ -117,3 +117,16 @@ export const SaveIcon = styled(FiSave)`
   color: ${(props) => props.theme.colorWhite};
   font-size: 32px;
 `;
+
+export const FuelInput = styled.input`
+  font-family: "Digital-7 Mono", sans-serif;
+  color: ${(props) => props.theme.colorYellow600};
+  font-size: 3.5rem;
+
+  background: none;
+  border: none;
+
+  width: 100%;
+  text-align: center;
+  padding: 0;
+`;
