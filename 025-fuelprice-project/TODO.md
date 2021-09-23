@@ -7,8 +7,26 @@
 [x] - Alterar título da App
 [x] - Alterar Ícone
 [x] - Configurar tema e styled-components
-[] - Criar Fuel Component
+[x] - Criar Fuel Component
 [x] - Add Icons Package
-[] - Configurar Axios
-[] - Conectar na componente na API
-[] - Criar etapa de alteração de preços
+[x] - Configurar Axios
+[x] - Conectar na componente na API
+[x] - Criar etapa de alteração de preços
+
+## O que aprendemos
+
+React
+Components
+Lifecycle
+State
+Arrays
+Json server
+Axios
+Conexão a API's
+GET
+PUT
+Temas com o Styled-component
+Como estilizar elementos
+Como estilizar ícones
+Como ter switch mode (edit mode)
+Input controlados
