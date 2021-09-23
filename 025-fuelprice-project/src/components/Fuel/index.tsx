@@ -1,4 +1,5 @@
 import React from "react";
+import { getFuel } from "./services";
 import {
   Box,
   Container,
@@ -11,6 +12,7 @@ import {
 } from "./styles";
 
 export const FuelComponent = () => {
+  getFuel();
   return (
     <Container>
       <Title>Posto ReactJS</Title>
