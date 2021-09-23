@@ -17,6 +17,8 @@ import {
 import { FuelComponentProps, IFuel, IFuelState } from "./types";
 import { FiEdit2 } from "react-icons/fi";
 
+const TIME_TO_UPDATE_MS = 1000;
+
 export const FuelComponent = ({
   editMode,
   toggleEditMode,
@@ -32,6 +34,18 @@ export const FuelComponent = ({
   useEffect(() => {
     fetchAndUpdateData();
   }, []);
+
+  useEffect(() => {
+    if (editMode) return;
+
+    const intervalId = setInterval(() => {
+      fetchAndUpdateData();
+    }, TIME_TO_UPDATE_MS);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [editMode]);
 
   function onUpdatePrice(fuelId: number, price: string) {
     const updatedFuels = fuels?.map((fuel) => {
