@@ -10,9 +10,12 @@ import {
   SettingsIcon,
   Title,
 } from "./styles";
-import { IFuel } from "./types";
+import { FuelComponentProps, IFuel } from "./types";
 
-export const FuelComponent = () => {
+export const FuelComponent = ({
+  editMode,
+  toggleEditMode,
+}: FuelComponentProps) => {
   const [fuels, setFuels] = useState<IFuel[]>();
 
   async function fetchAndUpdateData() {
@@ -28,7 +31,9 @@ export const FuelComponent = () => {
   return (
     <Container>
       <Title>Posto ReactJS</Title>
-      <SettingsIcon />
+      <SettingsIcon onClick={toggleEditMode} />
+
+      {editMode && <h1>EDIT MODE ON</h1>}
 
       <Panel>
         {fuels?.map((fuel) => (

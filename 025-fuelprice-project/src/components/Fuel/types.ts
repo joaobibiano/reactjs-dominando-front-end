@@ -3,3 +3,8 @@ export interface IFuel {
   name: string;
   price: number;
 }
+
+export type FuelComponentProps = {
+  editMode: boolean;
+  toggleEditMode: () => void;
+};
