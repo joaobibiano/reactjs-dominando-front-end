@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import data from "../../assets/data.json";
 import { ProductContainer, ProductImage, ProductsContainer } from "./styles";
 
@@ -8,10 +8,15 @@ type ParamsType = {
 
 export const Production = () => {
   const { selectedProduct } = useParams<ParamsType>();
+  const history = useHistory();
 
   const selected = data.products.find(
     (p) => p.id.toString() === selectedProduct
   );
+
+  function goToProduct(id: number) {
+    history.push(`/production/${id}`);
+  }
 
   return (
     <div>
@@ -19,7 +24,10 @@ export const Production = () => {
 
       <ProductsContainer>
         {data.products.map((product) => (
-          <ProductContainer key={product.id}>
+          <ProductContainer
+            key={product.id}
+            onClick={() => goToProduct(product.id)}
+          >
             <ProductImage src={product.image} />
             <h4>{product.name}</h4>
           </ProductContainer>
