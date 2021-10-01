@@ -1,4 +1,9 @@
-import { useParams, useHistory } from "react-router-dom";
+import {
+  useParams,
+  useHistory,
+  useRouteMatch,
+  generatePath,
+} from "react-router-dom";
 import data from "../../assets/data.json";
 import { ProductContainer, ProductImage, ProductsContainer } from "./styles";
 
@@ -9,13 +14,18 @@ type ParamsType = {
 export const Production = () => {
   const { selectedProduct } = useParams<ParamsType>();
   const history = useHistory();
+  const routeMatch = useRouteMatch();
 
   const selected = data.products.find(
     (p) => p.id.toString() === selectedProduct
   );
 
   function goToProduct(id: number) {
-    history.push(`/production/${id}`);
+    const urlToGo = generatePath(routeMatch.path, {
+      selectedProduct: id,
+    });
+
+    history.push(urlToGo);
   }
 
   return (
