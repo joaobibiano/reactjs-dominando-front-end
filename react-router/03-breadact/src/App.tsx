@@ -4,6 +4,7 @@ import "./App.css";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { Production } from "./components/Production";
+import { Stock } from "./components/Stock";
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
             <Production />
           </Route>
 
-          <Route path="/stock">Estoque</Route>
+          <Route path="/stock">
+            <Stock />
+          </Route>
         </Switch>
       </BrowserRouter>
     </div>
