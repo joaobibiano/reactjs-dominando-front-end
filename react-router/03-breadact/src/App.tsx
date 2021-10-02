@@ -6,6 +6,8 @@ import { Navbar } from "./components/Navbar";
 import { Production } from "./components/Production";
 import { Stock } from "./components/Stock";
 import { NotFound } from "./components/NotFound";
+import { Login } from "./components/Login";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -21,8 +23,12 @@ function App() {
             <Production />
           </Route>
 
-          <Route path="/stock">
+          <ProtectedRoute path="/stock">
             <Stock />
+          </ProtectedRoute>
+
+          <Route path="/login">
+            <Login />
           </Route>
 
           <Route path="*">
