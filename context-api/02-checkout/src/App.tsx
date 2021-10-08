@@ -2,16 +2,15 @@ import { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Checkout } from "./components/Checkout";
+import { useUser } from "./context/UserContext";
 
 function App() {
-  const [user, setUser] = useState({
-    name: "Maria",
-  });
+  const user = useUser();
 
   return (
     <div className="App">
       <p>Seja bem vindo {user.name}</p>
-      <Checkout userName={user.name} />
+      <Checkout />
     </div>
   );
 }

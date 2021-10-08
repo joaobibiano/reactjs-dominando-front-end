@@ -8,15 +8,11 @@ const Container = styled.div`
 
 const Title = styled.h2``;
 
-type CheckoutProps = {
-  userName: string;
-};
-
-export const Checkout = ({ userName }: CheckoutProps) => {
+export const Checkout = () => {
   return (
     <Container>
       <Title>Checkout</Title>
-      <Total userName={userName} />
+      <Total />
     </Container>
   );
 };
