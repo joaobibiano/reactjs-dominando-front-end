@@ -1,8 +1,14 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useReducer } from "react";
+import {
+  initialState,
+  ReducerAction,
+  ReducerState,
+  userReducer,
+} from "./reducer";
 
 interface IUserContext {
-  name: string;
-  updateUserName(name: string): void;
+  state: ReducerState;
+  dispatch(action: ReducerAction): void;
 }
 
 const UserContext = createContext<IUserContext | undefined>(undefined);
@@ -12,25 +18,15 @@ type UserProviderProps = {
 };
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, setUser] = useState({
-    name: "Outro nome",
-  });
-
-  function updateUserName(name: string) {
-    if (name === "joao") {
-      setUser({
-        name: "Proibido",
-      });
-      return;
-    }
-
-    setUser({
-      name: name,
-    });
-  }
+  const [state, dispatch] = useReducer(userReducer, initialState);
 
   return (
-    <UserContext.Provider value={{ ...user, updateUserName }}>
+    <UserContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

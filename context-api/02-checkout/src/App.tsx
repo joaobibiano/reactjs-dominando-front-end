@@ -6,11 +6,13 @@ import { useUser } from "./context/UserContext";
 import { Profile } from "./components/Profile";
 
 function App() {
-  const user = useUser();
+  const { state, dispatch } = useUser();
 
   return (
     <div className="App">
-      <p>Seja bem vindo {user.name}</p>
+      <p>Seja bem vindo {state.name}</p>
+      <small>Seu token é: {state.token}</small>
+      <p>Você clicou {state.totalClicks} vezes</p>
       <Checkout />
       <Profile />
     </div>

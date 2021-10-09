@@ -15,8 +15,8 @@ export const TotalMessage = () => {
   return (
     <Container>
       <Message>
-        {user.name}, o valor da sua compra ultrapassou R$ 100,00, você tem 5% de
-        desconto.
+        {user.state.name}, o valor da sua compra ultrapassou R$ 100,00, você tem
+        5% de desconto.
       </Message>
     </Container>
   );
