@@ -2,6 +2,7 @@ import { createContext, useState, useContext } from "react";
 
 interface IUserContext {
   name: string;
+  updateUserName(name: string): void;
 }
 
 const UserContext = createContext<IUserContext | undefined>(undefined);
@@ -15,7 +16,24 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     name: "Outro nome",
   });
 
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+  function updateUserName(name: string) {
+    if (name === "joao") {
+      setUser({
+        name: "Proibido",
+      });
+      return;
+    }
+
+    setUser({
+      name: name,
+    });
+  }
+
+  return (
+    <UserContext.Provider value={{ ...user, updateUserName }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export const useUser = () => {

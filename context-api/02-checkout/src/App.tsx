@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Checkout } from "./components/Checkout";
 import { useUser } from "./context/UserContext";
+import { Profile } from "./components/Profile";
 
 function App() {
   const user = useUser();
@@ -11,6 +12,7 @@ function App() {
     <div className="App">
       <p>Seja bem vindo {user.name}</p>
       <Checkout />
+      <Profile />
     </div>
   );
 }
