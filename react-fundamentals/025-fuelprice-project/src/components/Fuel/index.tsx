@@ -64,7 +64,7 @@ export const FuelComponent = ({
     // obter combustivels com valores alterados
     const changed = fuels?.filter((f) => f.updated === true);
 
-    if (!changed) {
+    if (!changed || changed.length === 0) {
       toggleEditMode();
       return;
     }
