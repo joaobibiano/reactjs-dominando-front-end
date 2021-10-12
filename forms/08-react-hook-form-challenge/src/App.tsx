@@ -54,25 +54,52 @@ const SubmitButton = styled.button`
 `;
 
 function App() {
+  const { register, handleSubmit, control, formState } = useForm({
+    mode: "all",
+    delayError: 200,
+  });
+
+  function onSubmitHandler(values: any) {
+    console.log(values);
+  }
+
   return (
     <div className="App">
       <Title>Complete seus dados</Title>
-      <form>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <FormGroup>
           <label htmlFor="name">Nome</label>
-          <input type="text" name="name" placeholder="inteiro por favor" />
+          <input
+            type="text"
+            placeholder="inteiro por favor"
+            {...register("name", { required: true })}
+          />
         </FormGroup>
 
         <FormGroup>
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" placeholder="seu melhor email" />
+          <input
+            type="email"
+            placeholder="seu melhor email"
+            {...register("email", { required: true })}
+          />
         </FormGroup>
 
         <FormGroup>
           <label htmlFor="cpf">CPF</label>
-          <ReactInputMask
-            mask="999.999.999-99"
-            placeholder="sua identificação"
+          <Controller
+            name="cpf"
+            control={control}
+            defaultValue=""
+            render={({ field }) => {
+              return (
+                <ReactInputMask
+                  mask="999.999.999-99"
+                  placeholder="sua identificação"
+                  {...field}
+                />
+              );
+            }}
           />
         </FormGroup>
         <SubmitButton>Enviar</SubmitButton>
