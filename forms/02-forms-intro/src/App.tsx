@@ -25,7 +25,11 @@ function Form_Uncontrolled() {
 }
 
 function Form_controlled() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState({
+    value: "",
+    invalid: true,
+    touched: false,
+  });
   const [email, setEmail] = useState("");
 
   // const [data, setData] = useState({
@@ -46,14 +50,44 @@ function Form_controlled() {
           type="text"
           name="name"
           placeholder="Digite seu nome"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
+          value={name.value}
+          onClick={() => {
+            setName({
+              ...name,
+              touched: true,
+            });
+          }}
+          onChange={(event) => {
+            if (event.target.value === "") {
+              setName({
+                value: event.target.value,
+                invalid: true,
+                touched: true,
+              });
+            } else {
+              setName({
+                value: event.target.value,
+                invalid: false,
+                touched: true,
+              });
+            }
+          }}
         />
-        {name === "joao" && <h1>Seja bem vindo!</h1>}
+        {name.invalid && name.touched && (
+          <span
+            style={{
+              color: "red",
+            }}
+          >
+            Por favor, preencha o nome
+          </span>
+        )}
+        {/* {name === "joao" && <h1>Seja bem vindo!</h1>} */}
 
         <input
           type="text"
           name="email"
+          required
           placeholder="Digite seu e-mail"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
