@@ -34,6 +34,10 @@ const FormGroup = styled.div`
     }
   }
 
+  input:focus {
+    outline: none;
+  }
+
   label {
     margin-right: 10px;
     font-size: 20px;
@@ -56,7 +60,6 @@ const SubmitButton = styled.button`
 function App() {
   const { register, handleSubmit, control, formState } = useForm({
     mode: "all",
-    delayError: 200,
   });
 
   function onSubmitHandler(values: any) {
@@ -72,6 +75,7 @@ function App() {
           <input
             type="text"
             placeholder="inteiro por favor"
+            className={formState.errors.name ? "error" : ""}
             {...register("name", { required: true })}
           />
         </FormGroup>
@@ -81,6 +85,7 @@ function App() {
           <input
             type="email"
             placeholder="seu melhor email"
+            className={formState.errors.email ? "error" : ""}
             {...register("email", { required: true })}
           />
         </FormGroup>
