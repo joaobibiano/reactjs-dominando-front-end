@@ -1,26 +1,24 @@
 import { Box, Button, Heading, Spinner, Image, Text } from "grommet";
 import { useHistory, useParams } from "react-router-dom";
-
+import axios from "axios";
 import { IProduct } from "../../types/IProduct";
+import { useQuery } from "react-query";
+
+async function fetchProduct(id: string) {
+  const request = await axios.get(`http://localhost:3333/products/${id}`);
+
+  return request.data as IProduct;
+}
 
 export const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
-
-  const data: IProduct = {
-    id: 1,
-    title: "Product 1",
-    price: 100,
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    category: "Category 1",
-    image:
-      "https://images.unsplash.com/photo-1589170781884-b8b8d8f8e8b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-    rating: {
-      rate: 4.5,
-      count: 10,
-    },
-    stock: 10,
-  };
+  const { data, isLoading } = useQuery<IProduct>(
+    ["products", id],
+    () => fetchProduct(id),
+    {
+      staleTime: 10000,
+    }
+  );
 
   const history = useHistory();
 
@@ -41,7 +39,7 @@ export const ProductDetail = () => {
     );
   };
 
-  if (!data) {
+  if (!data || isLoading) {
     return <LoadingComponent />;
   }
 
