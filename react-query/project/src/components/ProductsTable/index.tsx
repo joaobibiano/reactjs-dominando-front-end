@@ -11,10 +11,23 @@ import { useHistory, useLocation } from "react-router-dom";
 import { IProduct } from "../../types/IProduct";
 import { Star } from "grommet-icons";
 import { ProductStock } from "../ProductStock";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 export interface IState {
   total?: number;
   items: Array<IProduct>;
+}
+
+async function fetch(page: number, perPage: number): Promise<IState> {
+  const request = await axios.get<IProduct[]>(
+    `http://localhost:3333/products?_page=${page}&_limit=${perPage}`
+  );
+
+  return {
+    items: request.data,
+    total: Number(request.headers["x-total-count"]),
+  };
 }
 
 const PER_PAGE = 6;
@@ -22,28 +35,10 @@ export const ProductsTable = () => {
   const history = useHistory();
   const location = useLocation();
   const page = Number(new URLSearchParams(location.search).get("page") || "1");
-
-  const data: IState = {
-    total: 30,
-    items: [
-      {
-        id: 1,
-        title: "Product 1",
-        price: 100,
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        category: "Category 1",
-        image:
-          "https://images.unsplash.com/photo-1589170781884-b8b8d8f8e8b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        rating: {
-          rate: 4.5,
-          count: 10,
-        },
-        stock: 10,
-      },
-    ],
-  };
-  const isLoading = false;
+  const { data, isLoading } = useQuery<IState>(
+    ["products", page, PER_PAGE],
+    () => fetch(page, PER_PAGE)
+  );
 
   const columns: ColumnConfig<IProduct>[] = [
     {
