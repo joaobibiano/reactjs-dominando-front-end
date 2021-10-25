@@ -3,6 +3,12 @@ import { Todo } from "..";
 import userEvent from "@testing-library/user-event";
 
 describe("<Todo />", () => {
+  it("matches the style", () => {
+    const { container } = render(<Todo />);
+
+    expect(container).toMatchSnapshot();
+  });
+
   it("renders the input", () => {
     render(<Todo />);
 

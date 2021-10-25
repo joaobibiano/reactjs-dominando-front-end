@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Todo /> matches the style 1`] = `
+<div>
+  <div>
+    <form>
+      <input
+        placeholder="Type your todo"
+        value=""
+      />
+      <button
+        type="submit"
+      >
+        Add
+      </button>
+    </form>
+    <ul />
+  </div>
+</div>
+`;
