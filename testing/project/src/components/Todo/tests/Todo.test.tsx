@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Todo } from "..";
+import userEvent from "@testing-library/user-event";
 
 describe("<Todo />", () => {
   it("renders the input", () => {
@@ -12,5 +13,35 @@ describe("<Todo />", () => {
     render(<Todo />);
 
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
+  });
+
+  describe("when the input is filled", () => {
+    describe("and the submit button is clicked", () => {
+      it("adds a new item", () => {
+        render(<Todo />);
+
+        const input = screen.getByPlaceholderText("Type your todo");
+        userEvent.type(input, "Buy milk");
+
+        const submitButton = screen.getByRole("button", { name: "Add" });
+        userEvent.click(submitButton);
+
+        expect(screen.getByRole("list")).toHaveTextContent("Buy milk");
+      });
+
+      it("clear the input", () => {
+        render(<Todo />);
+
+        const input = screen.getByPlaceholderText("Type your todo");
+        userEvent.type(input, "Buy milk");
+
+        const submitButton = screen.getByRole("button", { name: "Add" });
+        userEvent.click(submitButton);
+
+        expect(screen.getByPlaceholderText("Type your todo")).toHaveTextContent(
+          ""
+        );
+      });
+    });
   });
 });
