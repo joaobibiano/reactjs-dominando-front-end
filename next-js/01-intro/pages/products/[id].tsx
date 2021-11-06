@@ -1,9 +1,28 @@
 import { useRouter } from "next/router";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+// generate pages on each request
+// generate pages on build
 
-const Product = () => {
-  const router = useRouter();
+type Props = {
+  productId: string;
+};
 
-  return <h1>Product page {router.query.id}</h1>;
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
+  const productId = context.query.id as string;
+
+  return {
+    props: {
+      productId: productId,
+    },
+  };
+};
+
+type ProductProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+
+const Product = ({ productId }: ProductProps) => {
+  return <h1>Product page {productId}</h1>;
 };
 
 export default Product;
