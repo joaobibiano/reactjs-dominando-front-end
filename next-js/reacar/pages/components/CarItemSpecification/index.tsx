@@ -14,3 +14,7 @@ export const CarItemSpecification = ({
     </div>
   );
 };
+
+export const CarItemTextSpecification = ({ text }: { text: string }) => {
+  return <p className="text-gray-800 py-3 text-lg">{text}</p>;
+};

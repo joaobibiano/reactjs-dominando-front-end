@@ -2,7 +2,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { getAll, ICar } from "../../services/data";
-import { FiSearch, FiTool, FiClock, FiMapPin } from "react-icons/fi";
+import { FiTool, FiClock, FiMapPin } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
 import { CarItemSpecification } from "../components/CarItemSpecification";
