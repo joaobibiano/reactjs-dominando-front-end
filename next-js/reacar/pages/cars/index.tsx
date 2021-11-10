@@ -5,8 +5,8 @@ import { getAll, ICar } from "../../services/data";
 import { FiTool, FiClock, FiMapPin } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
-import { CarItemSpecification } from "../components/CarItemSpecification";
-import { SearchForm } from "../components/SearchForm";
+import { CarItemSpecification } from "../../components/CarItemSpecification";
+import { SearchForm } from "../../components/SearchForm";
 
 type Props = {
   cars: ICar[];
