@@ -1,26 +1,18 @@
-import {
-  useParams,
-  useHistory,
-  useRouteMatch,
-  useLocation,
-} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import data from "../../assets/data.json";
 import { ButtonVisibily, StockContainer } from "./styles";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export const Stock = () => {
-  const history = useHistory();
-  const routeMatch = useRouteMatch();
+  const navigate = useNavigate();
+
   const location = useLocation();
   const queryParam = new URLSearchParams(location.search);
 
   const showStock = queryParam.get("showStock") === "true";
 
   function toggleShow() {
-    history.replace({
-      pathname: routeMatch.path,
-      search: `?showStock=${!showStock}`,
-    });
+    navigate(`?showStock=${!showStock}`, { replace: true });
   }
 
   return (
