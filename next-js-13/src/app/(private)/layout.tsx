@@ -15,7 +15,7 @@ export default function RootLayout({
         </div>
       </nav>
 
-      <section className="rounded-lg shadow-2xl px-24 py-12 mx-3 my-12 h-3/5">
+      <section className="rounded-lg shadow-2xl px-24 py-12 mx-3 my-12 min-h-[60%]">
         {children}
       </section>
     </>
