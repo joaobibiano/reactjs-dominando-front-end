@@ -12,6 +12,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Trash } from "lucide-react";
+import DeleteButton from "./delete-button";
 
 export default async function Dashboard() {
   const links = await database.link.findMany();
@@ -52,7 +54,7 @@ export default async function Dashboard() {
                 <TableCell>{link.slug}</TableCell>
                 <TableCell>{link.originalUrl}</TableCell>
                 <TableCell>
-                  <Button>Delete</Button>
+                  <DeleteButton id={link.id} />
                 </TableCell>
               </TableRow>
             ))}
